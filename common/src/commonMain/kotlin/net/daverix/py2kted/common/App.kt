@@ -21,40 +21,91 @@ fun App() {
                 )
             }
         ) { padding ->
-            Row(modifier = Modifier.padding(padding)) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1f)
-                ) {
-                    Text(text = "Python")
-                    TextField(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1f),
-                        value = text,
-                        onValueChange = { value ->
-                            text = value
-                        }
-                    )
-                }
-                Spacer(modifier = Modifier.fillMaxHeight().background(MaterialTheme.colors.onBackground).width(1.dp))
-                Column(
-                    modifier = Modifier
-                        .fillMaxHeight()
-                        .weight(1f)
-                ) {
-                    Text(text = "Kotlin")
-                    Text(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1f)
-                            .padding(16.dp),
-                        text = convertToKotlin(text)
-                    )
+            BoxWithConstraints {
+                if(maxWidth > maxHeight) {
+                    Row(modifier = Modifier.padding(padding)) {
+                        PythonEditor(
+                            text = text,
+                            onChangeCode = {
+                                text = it
+                            },
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .weight(1f)
+                        )
+                        Spacer(
+                            modifier = Modifier.fillMaxHeight()
+                                .background(MaterialTheme.colors.onBackground)
+                                .width(1.dp)
+                        )
+                        KotlinPreview(
+                            text = text,
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .weight(1f)
+                        )
+                    }
+                } else {
+                    Column(modifier = Modifier.padding(padding)) {
+                        KotlinPreview(
+                            text = text,
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .weight(0.4f)
+                        )
+                        Divider()
+                        PythonEditor(
+                            text = text,
+                            onChangeCode = {
+                                text = it
+                            },
+                            modifier = Modifier
+                                .fillMaxHeight()
+                                .weight(0.6f)
+                        )
+                    }
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun KotlinPreview(
+    text: String,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(text = "Kotlin")
+        Text(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(16.dp),
+            text = convertToKotlin(text)
+        )
+    }
+}
+
+@Composable
+private fun PythonEditor(
+    text: String,
+    onChangeCode: (String) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier
+    ) {
+        Text(text = "Python")
+        TextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f),
+            value = text,
+            onValueChange = onChangeCode
+        )
     }
 }
 
