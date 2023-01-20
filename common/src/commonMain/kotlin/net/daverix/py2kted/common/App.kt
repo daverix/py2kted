@@ -3,13 +3,19 @@ package net.daverix.py2kted.common
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun App() {
-    var text by remember { mutableStateOf("") }
+fun App(
+    initialText: String,
+    onOpenDocument: () -> Unit,
+    extraButtons: @Composable RowScope.() -> Unit = {}
+) {
+    var text by remember(initialText) { mutableStateOf(initialText) }
 
     MaterialTheme {
         Scaffold(
@@ -17,6 +23,17 @@ fun App() {
                 TopAppBar(
                     title = {
                         Text("Python 2 Kotlin Editor")
+                    },
+                    actions = {
+                        IconButton(
+                            onClick = {
+                                //TODO: figure out how to use DropdownMenu in this old compose version
+                                onOpenDocument()
+                            }
+                        ) {
+                            Icon(Icons.Default.MoreVert, contentDescription = "Menu")
+                        }
+                        extraButtons()
                     }
                 )
             }
