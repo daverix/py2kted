@@ -17,70 +17,68 @@ fun App(
 ) {
     var text by remember(initialText) { mutableStateOf(initialText) }
 
-    MaterialTheme {
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = {
-                        Text("Python 2 Kotlin Editor")
-                    },
-                    actions = {
-                        IconButton(
-                            onClick = {
-                                //TODO: figure out how to use DropdownMenu in this old compose version
-                                onOpenDocument()
-                            }
-                        ) {
-                            Icon(Icons.Default.MoreVert, contentDescription = "Menu")
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text("Python 2 Kotlin Editor")
+                },
+                actions = {
+                    IconButton(
+                        onClick = {
+                            //TODO: figure out how to use DropdownMenu in this old compose version
+                            onOpenDocument()
                         }
-                        extraButtons()
+                    ) {
+                        Icon(Icons.Default.MoreVert, contentDescription = "Menu")
                     }
-                )
-            }
-        ) { padding ->
-            BoxWithConstraints {
-                if(maxWidth > maxHeight) {
-                    Row(modifier = Modifier.padding(padding)) {
-                        PythonEditor(
-                            text = text,
-                            onChangeCode = {
-                                text = it
-                            },
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                        )
-                        Spacer(
-                            modifier = Modifier.fillMaxHeight()
-                                .background(MaterialTheme.colors.onBackground)
-                                .width(1.dp)
-                        )
-                        KotlinPreview(
-                            text = text,
-                            modifier = Modifier
-                                .fillMaxHeight()
-                                .weight(1f)
-                        )
-                    }
-                } else {
-                    Column(modifier = Modifier.padding(padding)) {
-                        KotlinPreview(
-                            text = text,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(0.4f)
-                        )
-                        Divider()
-                        PythonEditor(
-                            text = text,
-                            onChangeCode = {
-                                text = it
-                            },
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .weight(0.6f)
-                        )
-                    }
+                    extraButtons()
+                }
+            )
+        }
+    ) { padding ->
+        BoxWithConstraints {
+            if(maxWidth > maxHeight) {
+                Row(modifier = Modifier.padding(padding)) {
+                    PythonEditor(
+                        text = text,
+                        onChangeCode = {
+                            text = it
+                        },
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .weight(1f)
+                    )
+                    Spacer(
+                        modifier = Modifier.fillMaxHeight()
+                            .background(MaterialTheme.colors.onBackground)
+                            .width(1.dp)
+                    )
+                    KotlinPreview(
+                        text = text,
+                        modifier = Modifier
+                            .fillMaxHeight()
+                            .weight(1f)
+                    )
+                }
+            } else {
+                Column(modifier = Modifier.padding(padding)) {
+                    KotlinPreview(
+                        text = text,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(0.4f)
+                    )
+                    Divider()
+                    PythonEditor(
+                        text = text,
+                        onChangeCode = {
+                            text = it
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .weight(0.6f)
+                    )
                 }
             }
         }
