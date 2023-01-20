@@ -1,3 +1,5 @@
+package net.daverix.py2kted.desktop
+
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import net.daverix.py2kted.common.App

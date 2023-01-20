@@ -5,10 +5,6 @@ plugins {
     id("org.jetbrains.compose")
 }
 
-group = "com.example"
-version = "1.0-SNAPSHOT"
-
-
 kotlin {
     jvm {
         compilations.all {
@@ -29,10 +25,10 @@ kotlin {
 
 compose.desktop {
     application {
-        mainClass = "MainKt"
+        mainClass = "net.daverix.py2kted.desktop.MainKt"
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
-            packageName = "net.daverix.py2kted"
+            packageName = "net.daverix.py2kted.desktop"
             packageVersion = "1.0.0"
         }
     }
