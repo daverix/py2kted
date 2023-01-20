@@ -50,7 +50,7 @@ fun App() {
                         KotlinPreview(
                             text = text,
                             modifier = Modifier
-                                .fillMaxHeight()
+                                .fillMaxWidth()
                                 .weight(0.4f)
                         )
                         Divider()
@@ -60,7 +60,7 @@ fun App() {
                                 text = it
                             },
                             modifier = Modifier
-                                .fillMaxHeight()
+                                .fillMaxWidth()
                                 .weight(0.6f)
                         )
                     }
