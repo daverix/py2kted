@@ -21,7 +21,7 @@ android {
 
     compileSdk = 33
     defaultConfig {
-        applicationId = "com.example.android"
+        applicationId = "net.daverix.py2kted"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
