@@ -3,7 +3,8 @@
     <application
             android:allowBackup="false"
             android:supportsRtl="true"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:label="Python 2 Kotlin Editor">
         <activity android:name="net.daverix.py2kted.android.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
