@@ -119,7 +119,8 @@ private fun PythonEditor(
                 .fillMaxWidth()
                 .weight(1f),
             value = text,
-            onValueChange = onChangeCode
+            onValueChange = onChangeCode,
+            visualTransformation = PythonVisualTransformation()
         )
     }
 }
